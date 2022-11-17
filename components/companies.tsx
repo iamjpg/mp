@@ -1,4 +1,5 @@
 import { Company } from '../types/company';
+import { formatNumber } from '../utils';
 import {
   Button,
   Card,
@@ -16,8 +17,15 @@ const Companies = ({ companies }: { companies: Array<Company> }) => {
   return (
     <>
       {companies.map((company: Company, index: number) => {
-        const { company_name, company_state, employee_count, plan_year } =
-          company;
+        const {
+          company_name,
+          company_state,
+          employee_count,
+          plan_year,
+          premium_sum,
+          participants_sum,
+          broker_commission_sum,
+        } = company;
 
         return (
           <Card shadow='sm' p='lg' radius='md' mt={10} withBorder>
@@ -49,7 +57,18 @@ const Companies = ({ companies }: { companies: Array<Company> }) => {
               <Button variant='subtle'>Show More</Button>
             </Flex>
             <Collapse in={true}>
-              <div className={moreInfo}>Hi</div>
+              <div className={moreInfo}>
+                <Text fz='sm'>
+                  <strong>Premium:</strong> {formatNumber(premium_sum)}
+                </Text>
+                <Text fz='sm'>
+                  <strong>Participants:</strong> {participants_sum}
+                </Text>
+                <Text fz='sm'>
+                  <strong>Broker Commissions:</strong>{' '}
+                  {formatNumber(broker_commission_sum)}
+                </Text>
+              </div>
             </Collapse>
           </Card>
         );
