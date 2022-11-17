@@ -48,7 +48,14 @@ const Companies = ({ companies }: { companies: Array<Company> }) => {
         } = company;
 
         return (
-          <Card shadow='sm' p='lg' radius='md' mt={10} withBorder>
+          <Card
+            shadow='sm'
+            p='lg'
+            radius='md'
+            mt={10}
+            key={`${company_name}-${index}`}
+            withBorder
+          >
             <Text fw={700} my={16} ta='center'>
               {company_name}
             </Text>
