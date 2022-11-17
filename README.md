@@ -8,3 +8,7 @@ NextJS application used to pull data from a [Gist](https://gist.githubuserconten
 2. Mantine React Component Library
 3. Jest
 4. Phosphor Icons
+
+## Demo
+
+[https://mini-palomar.vercel.app/](https://mini-palomar.vercel.app/)
