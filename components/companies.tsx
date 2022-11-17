@@ -49,6 +49,7 @@ const Companies = ({ companies }: { companies: Array<Company> }) => {
 
         return (
           <Card
+            data-testid='company-node'
             shadow='sm'
             p='lg'
             radius='md'
@@ -56,7 +57,7 @@ const Companies = ({ companies }: { companies: Array<Company> }) => {
             key={`${company_name}-${index}`}
             withBorder
           >
-            <Text fw={700} my={16} ta='center'>
+            <Text fw={700} my={16} ta='center' data-testid='company-name'>
               {company_name}
             </Text>
             <SimpleGrid cols={3} verticalSpacing='xs'>
