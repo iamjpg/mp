@@ -1,5 +1,5 @@
 import { Company } from '../types/company';
-import { Card, SimpleGrid, Text } from '@mantine/core';
+import { Button, Card, Divider, Flex, SimpleGrid, Text } from '@mantine/core';
 
 const Companies = ({ companies }: { companies: Array<Company> }) => {
   return (
@@ -33,6 +33,10 @@ const Companies = ({ companies }: { companies: Array<Company> }) => {
                 {plan_year}
               </Text>
             </SimpleGrid>
+            <Divider my='lg' />
+            <Flex justify='center' align='center'>
+              <Button variant='subtle'>Show More</Button>
+            </Flex>
           </Card>
         );
       })}
