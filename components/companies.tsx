@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Company } from '../types/company';
 import { formatNumber } from '../utils';
-import { ArrowCircleDown } from 'phosphor-react';
+import { ArrowCircleDown, ArrowCircleUp } from 'phosphor-react';
 import {
   Button,
   Card,
@@ -18,6 +18,21 @@ const { moreInfo } = styles;
 const Companies = ({ companies }: { companies: Array<Company> }) => {
   const stateArray: Array<number> = [];
   const [opened, setOpened] = useState(stateArray);
+
+  const handleOpenedArray = (index: number) => {
+    // Clone array.
+    const a = [...opened];
+    if (a.includes(index)) {
+      // Remove
+      const arrIndex = a.indexOf(index);
+      a.splice(arrIndex, 1);
+    } else {
+      // Add
+      a.push(index);
+    }
+
+    setOpened(a);
+  };
 
   return (
     <>
@@ -60,10 +75,19 @@ const Companies = ({ companies }: { companies: Array<Company> }) => {
             <Divider my='lg' />
             <Flex justify='center' align='center'>
               <Button
+                onClick={() => {
+                  handleOpenedArray(index);
+                }}
                 variant='subtle'
-                rightIcon={<ArrowCircleDown size={22} />}
+                rightIcon={
+                  opened.includes(index) ? (
+                    <ArrowCircleUp size={22} />
+                  ) : (
+                    <ArrowCircleDown size={22} />
+                  )
+                }
               >
-                Show More
+                {opened.includes(index) ? 'Show Less' : 'Show More'}
               </Button>
             </Flex>
             <Collapse in={opened.includes(index)}>
