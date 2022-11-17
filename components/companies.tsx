@@ -1,14 +1,17 @@
 import { Company } from '../types/company';
-import { Card } from '@mantine/core';
+import { Card, Text } from '@mantine/core';
 
 const Companies = ({ companies }: { companies: Array<Company> }) => {
-  console.log(companies);
   return (
     <>
       {companies.map((company: Company, index: number) => {
+        const { company_name } = company;
+
         return (
           <Card shadow='sm' p='lg' radius='md' mt={10} withBorder>
-            I'm card # {index}
+            <Text fw={700} my={16} ta='center'>
+              {company_name}
+            </Text>
           </Card>
         );
       })}
