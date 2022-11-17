@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import { Container } from '@mantine/core';
+import { Company } from '../types/company';
 
-export default function Home() {
+export default function Home({ companies }: { companies: Array<Company> }) {
   return (
     <>
       <Head>
@@ -25,7 +26,7 @@ export const getStaticProps = async () => {
     'https://gist.githubusercontent.com/gyermich/6ca0c6601932bae50d3c6eb75481d302/raw/416ab16e087fbc14c0a517aa8da7a9873c38dd1e/companies.json'
   );
 
-  const companies = await res.json();
+  const companies: Array<Company> = await res.json();
 
   return {
     props: {
