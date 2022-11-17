@@ -17,7 +17,7 @@ export default function Home({ companies }: { companies: Array<Company> }) {
       <Container size={500}>
         <h1>Mini Palomar</h1>
         <main>
-          <Companies />
+          <Companies data={companies} />
         </main>
       </Container>
     </>
