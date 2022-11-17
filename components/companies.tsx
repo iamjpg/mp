@@ -1,5 +1,16 @@
 import { Company } from '../types/company';
-import { Button, Card, Divider, Flex, SimpleGrid, Text } from '@mantine/core';
+import {
+  Button,
+  Card,
+  Collapse,
+  Divider,
+  Flex,
+  SimpleGrid,
+  Text,
+} from '@mantine/core';
+import styles from '../styles/Companies.module.css';
+
+const { moreInfo } = styles;
 
 const Companies = ({ companies }: { companies: Array<Company> }) => {
   return (
@@ -37,6 +48,9 @@ const Companies = ({ companies }: { companies: Array<Company> }) => {
             <Flex justify='center' align='center'>
               <Button variant='subtle'>Show More</Button>
             </Flex>
+            <Collapse in={true}>
+              <div className={moreInfo}>Hi</div>
+            </Collapse>
           </Card>
         );
       })}
