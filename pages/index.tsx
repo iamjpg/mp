@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { Container } from '@mantine/core';
 import { Company } from '../types/company';
+import Companies from '../components/companies';
 
 export default function Home({ companies }: { companies: Array<Company> }) {
   return (
@@ -15,7 +16,9 @@ export default function Home({ companies }: { companies: Array<Company> }) {
       </Head>
       <Container size={500}>
         <h1>Mini Palomar</h1>
-        <main>Content here...</main>
+        <main>
+          <Companies />
+        </main>
       </Container>
     </>
   );
