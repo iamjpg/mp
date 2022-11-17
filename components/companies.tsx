@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { Company } from '../types/company';
 import { formatNumber } from '../utils';
+import { ArrowCircleDown } from 'phosphor-react';
 import {
   Button,
   Card,
@@ -14,6 +16,9 @@ import styles from '../styles/Companies.module.css';
 const { moreInfo } = styles;
 
 const Companies = ({ companies }: { companies: Array<Company> }) => {
+  const stateArray: Array<number> = [];
+  const [opened, setOpened] = useState(stateArray);
+
   return (
     <>
       {companies.map((company: Company, index: number) => {
@@ -54,9 +59,14 @@ const Companies = ({ companies }: { companies: Array<Company> }) => {
             </SimpleGrid>
             <Divider my='lg' />
             <Flex justify='center' align='center'>
-              <Button variant='subtle'>Show More</Button>
+              <Button
+                variant='subtle'
+                rightIcon={<ArrowCircleDown size={22} />}
+              >
+                Show More
+              </Button>
             </Flex>
-            <Collapse in={true}>
+            <Collapse in={opened.includes(index)}>
               <div className={moreInfo}>
                 <Text fz='sm'>
                   <strong>Premium:</strong> {formatNumber(premium_sum)}
