@@ -38,13 +38,13 @@ const Companies = ({ companies }: { companies: Array<Company> }) => {
 
   const filterCompaniesByNam = (event: any) => {
     const elems: NodeListOf<Element> =
-      document.querySelectorAll('.card-container');
+      document.querySelectorAll('.company-card');
 
     const { value } = event.currentTarget;
 
     Array.from(elems).forEach((elem: any) => {
-      const mlsNumber = elem.dataset.mlsNumber;
-      if (!mlsNumber?.includes(value.toUpperCase())) {
+      const name = elem.dataset.companyName;
+      if (!name?.includes(value.toUpperCase())) {
         elem.style.display = 'none';
       } else {
         elem.style.display = 'block';
@@ -60,7 +60,10 @@ const Companies = ({ companies }: { companies: Array<Company> }) => {
 
   return (
     <>
-      <TextInput placeholder='Filter Results By Name' />
+      <TextInput
+        placeholder='Filter Results By Name'
+        onKeyUp={filterCompaniesByNam}
+      />
       {companies.map((company: Company, index: number) => {
         const {
           company_name,
@@ -76,6 +79,7 @@ const Companies = ({ companies }: { companies: Array<Company> }) => {
           <Card
             className='company-card'
             data-testid='company-node'
+            data-company-name={company_name.toUpperCase()}
             shadow='sm'
             p='lg'
             radius='md'
