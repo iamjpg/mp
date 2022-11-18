@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Company } from '../types/company';
 import { formatNumber } from '../utils';
 import { ArrowCircleDown, ArrowCircleUp } from 'phosphor-react';
@@ -17,6 +17,7 @@ const { moreInfo } = styles;
 
 const Companies = ({ companies }: { companies: Array<Company> }) => {
   const stateArray: Array<number> = [];
+  const [defaultOpened, setDefaultOpened] = useState(false);
   const [opened, setOpened] = useState(stateArray);
 
   const handleOpenedArray = (index: number) => {
@@ -33,6 +34,12 @@ const Companies = ({ companies }: { companies: Array<Company> }) => {
 
     setOpened(a);
   };
+
+  useEffect(() => {
+    if (companies.length > 0) {
+      setDefaultOpened(true);
+    }
+  }, [companies]);
 
   return (
     <>
@@ -99,18 +106,20 @@ const Companies = ({ companies }: { companies: Array<Company> }) => {
               </Button>
             </Flex>
             <Collapse in={opened.includes(index)}>
-              <div className={moreInfo}>
-                <Text fz='sm'>
-                  <strong>Premium:</strong> {formatNumber(premium_sum)}
-                </Text>
-                <Text fz='sm'>
-                  <strong>Participants:</strong> {participants_sum}
-                </Text>
-                <Text fz='sm'>
-                  <strong>Broker Commissions:</strong>{' '}
-                  {formatNumber(broker_commission_sum)}
-                </Text>
-              </div>
+              {defaultOpened && (
+                <div className={moreInfo}>
+                  <Text fz='sm'>
+                    <strong>Premium:</strong> {formatNumber(premium_sum)}
+                  </Text>
+                  <Text fz='sm'>
+                    <strong>Participants:</strong> {participants_sum}
+                  </Text>
+                  <Text fz='sm'>
+                    <strong>Broker Commissions:</strong>{' '}
+                    {formatNumber(broker_commission_sum)}
+                  </Text>
+                </div>
+              )}
             </Collapse>
           </Card>
         );
