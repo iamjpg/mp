@@ -8,6 +8,7 @@ import {
   Collapse,
   Divider,
   Flex,
+  TextInput,
   SimpleGrid,
   Text,
 } from '@mantine/core';
@@ -35,6 +36,22 @@ const Companies = ({ companies }: { companies: Array<Company> }) => {
     setOpened(a);
   };
 
+  const filterCompaniesByNam = (event: any) => {
+    const elems: NodeListOf<Element> =
+      document.querySelectorAll('.card-container');
+
+    const { value } = event.currentTarget;
+
+    Array.from(elems).forEach((elem: any) => {
+      const mlsNumber = elem.dataset.mlsNumber;
+      if (!mlsNumber?.includes(value.toUpperCase())) {
+        elem.style.display = 'none';
+      } else {
+        elem.style.display = 'block';
+      }
+    });
+  };
+
   useEffect(() => {
     if (companies.length > 0) {
       setDefaultOpened(true);
@@ -43,6 +60,7 @@ const Companies = ({ companies }: { companies: Array<Company> }) => {
 
   return (
     <>
+      <TextInput placeholder='Filter Results By Name' />
       {companies.map((company: Company, index: number) => {
         const {
           company_name,
@@ -56,6 +74,7 @@ const Companies = ({ companies }: { companies: Array<Company> }) => {
 
         return (
           <Card
+            className='company-card'
             data-testid='company-node'
             shadow='sm'
             p='lg'
