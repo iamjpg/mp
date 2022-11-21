@@ -36,7 +36,7 @@ const Companies = ({ companies }: { companies: Array<Company> }) => {
     setOpened(a);
   };
 
-  const filterCompaniesByNam = (event: any) => {
+  const filterCompaniesByName = (event: any) => {
     const elems: NodeListOf<Element> =
       document.querySelectorAll('.company-card');
 
@@ -62,7 +62,7 @@ const Companies = ({ companies }: { companies: Array<Company> }) => {
     <>
       <TextInput
         placeholder='Filter Results By Name'
-        onKeyUp={filterCompaniesByNam}
+        onKeyUp={filterCompaniesByName}
       />
       {companies.map((company: Company, index: number) => {
         const {
